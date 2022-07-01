@@ -168,12 +168,16 @@ select {
   margin: 5px 0;
   padding: 15px 15px;
   width: 100%;
-  background-color: rgb(237, 237, 237);
+  background-color: var(--secondary-accent);
   border-radius: 40px;
+  color: var(--secondary-color);
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .choice-input-label-container:hover {
-  background-color: rgb(185, 185, 185);
+  background-color: #6a8bff;
 }
 
 .answer-text {
