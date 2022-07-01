@@ -4,10 +4,88 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Javascript Quiz App</title>
   </head>
   <body>
+    <div class="main-container">
+      <div class="nav-time">
+        <a href="high-scores.html">View High Scores</a>
+        <span id="countdown-timer">Time:</span>
+      </div>
+      <main class="main-quiz-container">
+        <div class="quiz-container">
+          <div class="question-container">
+            <p class="question-counter">Question:</p>
+            <h1 class="question-text" id="current-question">
+              1. What is Javascript?
+            </h1>
+          </div>
+          <div class="choices-container">
+            <div class="choice-input-label-container" id="question-a">
+              <label id="first-choice-text" for="check-box-one"
+                >Hello World!
+                <input
+                  type="checkbox"
+                  id="check-box-one"
+                  class="choies-input"
+                />
+              </label>
+            </div>
+            <div class="choice-input-label-container" id="question-b">
+              <label id="second-choice-text" for="check-box-two"
+                >Hello World!
+                <input
+                  type="checkbox"
+                  id="check-box-two"
+                  class="choies-input"
+                />
+              </label>
+            </div>
+            <div class="choice-input-label-container" id="question-c">
+              <label id="third-choice-text" for="check-box-three"
+                >Hello World!
+                <input
+                  type="checkbox"
+                  id="check-box-three"
+                  class="choies-input"
+                />
+              </label>
+            </div>
+            <div class="choice-input-label-container" id="question-d">
+              <label
+                id="fourth-choice-text"
+                class="input-label"
+                for="check-box-four"
+                >Hello World!
+                <input
+                  type="checkbox"
+                  id="check-box-four"
+                  class="choies-input"
+                />
+              </label>
+            </div>
+          </div>
+          <div class="answer-container">
+            <span class="answer-text" id="answer"></span>
+          </div>
+        </div>
+      </main>
+    </div>
+
     <script src="./assets/scripts/app.js"></script>
   </body>
 </html>
