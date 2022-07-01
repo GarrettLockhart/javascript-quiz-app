@@ -1,5 +1,12 @@
 /* CSS reset by https://piccalil.li/blog/a-modern-css-reset/ */
 
+:root {
+  --primary-color: #fdf6e3;
+  --secondary-color: #fff;
+  --accent-color: #ffd256;
+  --secondary-accent: #3661f7;
+}
+
 /* Box sizing rules */
 *,
 *::before,
@@ -37,6 +44,8 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--accent-color);
 }
 
 /* A elements that don't have a class get default styles */
@@ -73,4 +82,102 @@ select {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Main wrapper */
+
+.main-container {
+  height: 90vh;
+  width: 90vw;
+  margin: 20px auto;
+}
+
+/* header */
+
+.nav-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  margin: 0 100px;
+  font-weight: bold;
+}
+
+.nav-time a {
+  color: black;
+}
+
+/* Quiz main body */
+
+.main-quiz-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: var(--secondary-color);
+  border-radius: 70px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 15px;
+}
+
+.quiz-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 50vh;
+  width: 40vw;
+}
+
+.question-container {
+  height: 100px;
+}
+
+.question-counter {
+  font-size: 1.2em;
+  text-align: center;
+  color: var(--accent-color);
+}
+
+.question-text {
+  font-size: 1.8em;
+}
+
+.choices-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 100px;
+}
+
+.input-label {
+  display: flex;
+  order: 2;
+}
+
+.choices-input {
+  display: flex;
+  order: 1;
+  font-size: 30px;
+}
+
+.choice-input-label-container {
+  display: flex;
+  margin: 5px 0;
+  padding: 15px 15px;
+  width: 100%;
+  background-color: rgb(237, 237, 237);
+  border-radius: 40px;
+}
+
+.choice-input-label-container:hover {
+  background-color: rgb(185, 185, 185);
+}
+
+.answer-text {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.24);
 }
