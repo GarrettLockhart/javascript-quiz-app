@@ -2,11 +2,23 @@ const countdownTimer = document.querySelector('#countdown-timer');
 const answer = document.querySelector('#answer');
 const questionCounter = document.querySelector('.question-counter');
 const currentQuestion = document.querySelector('#current-question');
-const firstChoiceText = document.querySelector('#first-choice-text');
-const secondChoiceText = document.querySelector('#second-choice-text');
-const thirdChoiceText = document.querySelector('#third-choice-text');
-const fourthChoiceText = document.querySelector('#fourth-choice-text');
+const firstChoiceLabel = document.querySelector('#first-choice-text');
+const secondChoiceLabel = document.querySelector('#second-choice-text');
+const thirdChoiceLabel = document.querySelector('#third-choice-text');
+const fourthChoiceLabel = document.querySelector('#fourth-choice-text');
+const nextQuestionBtn = document.querySelector('#next-btn');
+const startBtn = document.querySelector('#start-btn');
 
+const checkBoxA = document.querySelector('#check-box-a');
+const checkBoxB = document.querySelector('#check-box-b');
+const checkBoxC = document.querySelector('#check-box-c');
+const checkBoxD = document.querySelector('#check-box-d');
+
+const selectedCheckBox = document.querySelector(
+  '.choice-input-label-container'
+);
+
+// Questions, Options, and correct answer
 const quizData = [
   {
     question: 'Commonly Used Data Types Do NOT include?',
@@ -52,6 +64,7 @@ const quizData = [
   },
 ];
 
+// Countdown timer
 function countdown() {
   var timeLeft = 75;
 
@@ -66,31 +79,22 @@ function countdown() {
   }, 1000);
 }
 
-function displayQuestion() {
-  currentQuestion.innerHTML = quizData[0].question;
-
-  firstChoiceText.innerHTML = quizData[0].a;
-  secondChoiceText.innerHTML = quizData[0].b;
-  thirdChoiceText.innerHTML = quizData[0].c;
-  fourthChoiceText.innerHTML = quizData[0].d;
-
-  // function selectedAnswer() {
-  //   let chkBox = document.querySelector('#check-box');
-  //   if (chkBox.checked) {
-  //     if (thirdChoiceText === 'c') {
-  //       nextQuestion();
-  //     } else {
-  //       return false;
-  //     }
-  //   }
-  // }
+function startQuiz() {
+  window.location.assign('quiz.html');
 }
+displayQuestion();
+countdown();
+
+nextQuestionBtn.addEventListener('click', nextQuestion);
 
 function nextQuestion() {}
 
-function questionCount() {}
+// Pulls up the current question
+function displayQuestion() {
+  currentQuestion.textContent = quizData[0].question;
 
-// selectedAnswer();
-displayQuestion();
-questionCount();
-countdown();
+  firstChoiceLabel.textContent = quizData[0].a;
+  secondChoiceLabel.textContent = quizData[0].b;
+  thirdChoiceLabel.textContent = quizData[0].c;
+  fourthChoiceLabel.textContent = quizData[0].d;
+}
