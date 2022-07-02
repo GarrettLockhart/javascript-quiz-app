@@ -104,6 +104,10 @@ select {
   font-weight: bold;
 }
 
+#countdown-timer {
+  padding-right: 50px;
+}
+
 .nav-time a {
   color: black;
 }
@@ -141,6 +145,7 @@ select {
 
 .question-text {
   font-size: 1.8em;
+  margin-bottom: 20px;
 }
 
 .choices-container {
