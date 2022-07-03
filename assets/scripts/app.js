@@ -1,4 +1,4 @@
-const countdownTimer = document.querySelector('#countdown-timer');
+const countdownTimer = document.querySelector('#inner-time');
 const answer = document.querySelector('#answer');
 const questionCounter = document.querySelector('.question-counter');
 const currentQuestion = document.querySelector('#current-question');
@@ -13,8 +13,6 @@ const checkBoxA = document.querySelector('#check-box-a');
 const checkBoxB = document.querySelector('#check-box-b');
 const checkBoxC = document.querySelector('#check-box-c');
 const checkBoxD = document.querySelector('#check-box-d');
-
-checkBoxC.addEventListener('click', answerChecker);
 
 const selectedCheckBox = document.querySelector(
   '.choice-input-label-container'
@@ -66,12 +64,14 @@ const quizData = [
   },
 ];
 
+var i = 0;
+
 // Countdown timer
 function countdown() {
-  var timeLeft = 75;
+  var timeLeft = 1000;
 
   var timeInterval = setInterval(function () {
-    countdownTimer.textContent = `Time: ${timeLeft} Seconds Remaining`;
+    countdownTimer.textContent = `${timeLeft} Seconds Remaining`;
     timeLeft--;
 
     if (timeLeft === -1) {
@@ -81,7 +81,7 @@ function countdown() {
         countdown();
         startQuiz();
       } else if (tryAgain === false) {
-        alert('Thanks for playing');
+        alert('Thanks for playing!');
       }
     }
   }, 1000);
@@ -94,22 +94,31 @@ function startQuiz() {
 displayQuestionOne();
 countdown();
 
-// nextQuestionBtn.addEventListener('click', nextQuestion);
-
 // Pulls up the current question
 function displayQuestionOne() {
-  currentQuestion.textContent = quizData[0].question;
+  currentQuestion.textContent = quizData[i].question;
 
-  firstChoiceLabel.textContent = quizData[0].a;
-  secondChoiceLabel.textContent = quizData[0].b;
-  thirdChoiceLabel.textContent = quizData[0].c;
-  fourthChoiceLabel.textContent = quizData[0].d;
+  firstChoiceLabel.textContent = quizData[i].a;
+  secondChoiceLabel.textContent = quizData[i].b;
+  thirdChoiceLabel.textContent = quizData[i].c;
+  fourthChoiceLabel.textContent = quizData[i].d;
 }
 
-let userSelectedAnswer = [];
-
-function answerChecker() {
-  if (checkBoxC.checked) {
-    console.log(checkBoxC.checked);
+function nextQuestion() {
+  i++;
+  if (i < quizData.length) {
+    displayQuestionOne();
+  } else {
+    alert('Game over');
   }
 }
+
+nextQuestionBtn.addEventListener('click', nextQuestion);
+
+// let userSelectedAnswer = [];
+
+// function answerChecker() {
+//   if (checkBoxC.checked) {
+//     console.log(checkBoxC.checked);
+//   }
+// }
