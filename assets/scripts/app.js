@@ -14,6 +14,8 @@ const checkBoxB = document.querySelector('#check-box-b');
 const checkBoxC = document.querySelector('#check-box-c');
 const checkBoxD = document.querySelector('#check-box-d');
 
+checkBoxC.addEventListener('click', answerChecker);
+
 const selectedCheckBox = document.querySelector(
   '.choice-input-label-container'
 );
@@ -73,28 +75,41 @@ function countdown() {
     timeLeft--;
 
     if (timeLeft === -1) {
+      let tryAgain = confirm('Out of Time! Do you want to try again?');
       clearInterval(timeInterval);
-      countdownTimer.textContent = 'Out of Time!';
+      if (tryAgain === true) {
+        countdown();
+        startQuiz();
+      } else if (tryAgain === false) {
+        alert('Thanks for playing');
+      }
     }
   }, 1000);
 }
 
+// Launch Quiz from start screen
 function startQuiz() {
   window.location.assign('quiz.html');
 }
-displayQuestion();
+displayQuestionOne();
 countdown();
 
-nextQuestionBtn.addEventListener('click', nextQuestion);
-
-function nextQuestion() {}
+// nextQuestionBtn.addEventListener('click', nextQuestion);
 
 // Pulls up the current question
-function displayQuestion() {
+function displayQuestionOne() {
   currentQuestion.textContent = quizData[0].question;
 
   firstChoiceLabel.textContent = quizData[0].a;
   secondChoiceLabel.textContent = quizData[0].b;
   thirdChoiceLabel.textContent = quizData[0].c;
   fourthChoiceLabel.textContent = quizData[0].d;
+}
+
+let userSelectedAnswer = [];
+
+function answerChecker() {
+  if (checkBoxC.checked) {
+    console.log(checkBoxC.checked);
+  }
 }
