@@ -22,21 +22,21 @@
   </head>
   <body>
     <div class="main-container">
-      <div class="nav-time">
+      <header class="nav-time">
         <a id="quiz-link" href="high-scores.html">View High Scores</a>
-        <span id="countdown-timer"></span>
-      </div>
-      <div class="main-body-container">
-        <div class="start-page-container">
-          <h1 class="start-title">Start Quiz</h1>
+        <span id="countdown-timer">Time: <span id="inner-time"></span></span>
+      </header>
+      <main class="main-body-container">
+        <section class="start-page-container">
+          <h1 class="start-title">The JavaScript Quiz</h1>
           <p class="start-description">
             A timed quiz testing your knowledge in Javascript!
           </p>
           <button onclick="startQuiz()" class="start-button" id="strt-btn">
             Start!
           </button>
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
 
     <script src="./assets/scripts/app.js"></script>
