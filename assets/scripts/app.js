@@ -19,6 +19,8 @@ const selectedCheckBox = document.querySelector(
   '.choice-input-label-container'
 );
 
+nextQuestionBtn.addEventListener('click', nextQuestion);
+
 // Questions, Options, and correct answer
 const quizData = [
   {
@@ -66,7 +68,7 @@ const quizData = [
 ];
 
 var i = 0;
-var timeLeft = 100;
+var timeLeft = 1000;
 var score = 0;
 
 // Countdown timer
@@ -94,7 +96,6 @@ function startQuiz() {
 }
 displayQuestion();
 countdown();
-
 // Pulls up the current question
 function displayQuestion() {
   currentQuestion.textContent = quizData[i].question;
@@ -118,20 +119,19 @@ function nextQuestion() {
     console.log(scoreTracker());
     i++;
     if (i < quizData.length) {
-      displayQuestion();
       checkBoxA.checked = false;
       checkBoxB.checked = false;
       checkBoxC.checked = false;
       checkBoxD.checked = false;
+      displayQuestion();
     } else {
-      window.location.assign('high-score.html');
+      alert(`Your score was ${score}`);
+      prompt('Please enter your initials to store your score!');
     }
   } else {
     alert('Please select an option.');
   }
 }
-
-nextQuestionBtn.addEventListener('click', nextQuestion);
 
 function answerTracker() {
   if (checkBoxA.checked) {
