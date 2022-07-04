@@ -8,6 +8,7 @@ const thirdChoiceLabel = document.querySelector('#third-choice-text');
 const fourthChoiceLabel = document.querySelector('#fourth-choice-text');
 const nextQuestionBtn = document.querySelector('#next-btn');
 const startBtn = document.querySelector('#start-btn');
+const scoreDisplay = document.querySelector('#player-score');
 
 const checkBoxA = document.querySelector('#check-box-a');
 const checkBoxB = document.querySelector('#check-box-b');
@@ -66,6 +67,7 @@ const quizData = [
 
 var i = 0;
 var timeLeft = 100;
+var score = 0;
 
 // Countdown timer
 function countdown() {
@@ -80,7 +82,7 @@ function countdown() {
         countdown();
         startQuiz();
       } else if (tryAgain === false) {
-        alert('Thanks for playing!');
+        window.location.assign('index.html');
       }
     }
   }, 1000);
@@ -111,8 +113,9 @@ function nextQuestion() {
     // prettier-ignore
     checkBoxA.checked || checkBoxB.checked || checkBoxC.checked || checkBoxD.checked
   ) {
-    scoreTracker();
     answerTracker();
+    scoreTracker();
+    console.log(scoreTracker());
     i++;
     if (i < quizData.length) {
       displayQuestion();
@@ -121,7 +124,7 @@ function nextQuestion() {
       checkBoxC.checked = false;
       checkBoxD.checked = false;
     } else {
-      alert('Game over');
+      window.location.assign('high-score.html');
     }
   } else {
     alert('Please select an option.');
@@ -147,10 +150,7 @@ function answerTracker() {
 
 function scoreTracker() {
   if (userSelectedAnswer[i] === quizData[i].correct) {
-    console.log('Its working');
+    score = score + 10;
   }
+  return score;
 }
-
-// else if (userSelectedAnswer[i] !== 'c') {
-//   timeLeft = timeLeft - 10;
-// }
