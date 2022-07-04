@@ -65,11 +65,10 @@ const quizData = [
 ];
 
 var i = 0;
+var timeLeft = 100;
 
 // Countdown timer
 function countdown() {
-  var timeLeft = 1000;
-
   var timeInterval = setInterval(function () {
     countdownTimer.textContent = `${timeLeft} Seconds Remaining`;
     timeLeft--;
@@ -91,11 +90,11 @@ function countdown() {
 function startQuiz() {
   window.location.assign('quiz.html');
 }
-displayQuestionOne();
+displayQuestion();
 countdown();
 
 // Pulls up the current question
-function displayQuestionOne() {
+function displayQuestion() {
   currentQuestion.textContent = quizData[i].question;
 
   firstChoiceLabel.textContent = quizData[i].a;
@@ -104,21 +103,54 @@ function displayQuestionOne() {
   fourthChoiceLabel.textContent = quizData[i].d;
 }
 
+var userSelectedAnswer = [];
+
+// Display next question, store answer selected, add to score, or remove time, reset checkbox state
 function nextQuestion() {
-  i++;
-  if (i < quizData.length) {
-    displayQuestionOne();
+  if (
+    // prettier-ignore
+    checkBoxA.checked || checkBoxB.checked || checkBoxC.checked || checkBoxD.checked
+  ) {
+    scoreTracker();
+    answerTracker();
+    i++;
+    if (i < quizData.length) {
+      displayQuestion();
+      checkBoxA.checked = false;
+      checkBoxB.checked = false;
+      checkBoxC.checked = false;
+      checkBoxD.checked = false;
+    } else {
+      alert('Game over');
+    }
   } else {
-    alert('Game over');
+    alert('Please select an option.');
   }
 }
 
 nextQuestionBtn.addEventListener('click', nextQuestion);
 
-// let userSelectedAnswer = [];
+function answerTracker() {
+  if (checkBoxA.checked) {
+    userSelectedAnswer = userSelectedAnswer.concat(checkBoxA.value);
+  }
+  if (checkBoxB.checked) {
+    userSelectedAnswer = userSelectedAnswer.concat(checkBoxB.value);
+  }
+  if (checkBoxC.checked) {
+    userSelectedAnswer = userSelectedAnswer.concat(checkBoxC.value);
+  }
+  if (checkBoxD.checked) {
+    userSelectedAnswer = userSelectedAnswer.concat(checkBoxD.value);
+  }
+}
 
-// function answerChecker() {
-//   if (checkBoxC.checked) {
-//     console.log(checkBoxC.checked);
-//   }
+function scoreTracker() {
+  if (userSelectedAnswer[i] === quizData[i].correct) {
+    console.log('Its working');
+  }
+}
+
+// else if (userSelectedAnswer[i] !== 'c') {
+//   timeLeft = timeLeft - 10;
 // }
