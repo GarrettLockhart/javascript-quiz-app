@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Javascript Quiz App</title>
+  </head>
+  <body>
+    <div class="main-container">
+      <header class="nav-time">
+        <a id="quiz-link" href="high-scores.html">View High Scores</a>
+        <span id="countdown-timer">Time: <span id="inner-time"></span></span>
+      </header>
+      <main class="main-body-container">
+        <section class="start-page-container">
+          <h1 class="start-title">
+            Your score is: <span id="player-score"></span>
+          </h1>
+        </section>
+      </main>
+    </div>
+
+    <script src="./assets/scripts/app.js"></script>
+  </body>
+</html>
