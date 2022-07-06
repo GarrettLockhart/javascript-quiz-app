@@ -120,8 +120,15 @@ select {
   justify-content: flex-start;
   align-items: center;
   text-align: center;
-  height: 50vh;
   width: 40vw;
+  margin-bottom: 50px;
+}
+
+.score-display-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .start-title,
@@ -150,6 +157,7 @@ select {
 
 .main-body-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
