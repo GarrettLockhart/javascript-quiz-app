@@ -8,7 +8,6 @@ const thirdChoiceLabel = document.querySelector('#third-choice-text');
 const fourthChoiceLabel = document.querySelector('#fourth-choice-text');
 const nextQuestionBtn = document.querySelector('#next-btn');
 const startBtn = document.querySelector('#start-btn');
-const scoreDisplay = document.querySelector('#player-score');
 
 const checkBoxA = document.querySelector('#check-box-a');
 const checkBoxB = document.querySelector('#check-box-b');
@@ -95,12 +94,6 @@ function countdown() {
   }, 1000);
 }
 
-// Launch Quiz from start screen
-function startQuiz() {
-  window.location.assign('quiz.html');
-}
-displayQuestion();
-countdown();
 // Pulls up the current question
 function displayQuestion() {
   currentQuestion.textContent = quizData[i].question;
@@ -130,9 +123,7 @@ function nextQuestion() {
       displayQuestion();
     } else {
       // ! this isn't working right, reference error nextQuestion and playerTotalScore not defined
-      displayScore();
-      storeScore();
-      // window.location.assign('index.html');
+      window.location.assign('index.html');
       // window.onload = displayScore();
     }
   } else {
@@ -167,13 +158,5 @@ function storeScore() {
   // localStorage.setItem('playerTotalScore', playerTotalScore);
 }
 
-// ! this only partially works
-
-function displayScore() {
-  var scoreDisplayOutput = localStorage.getItem(
-    JSON.parse('totalScore', playerTotalScore)
-  );
-  alert(scoreDisplayOutput.playerTotalScore);
-  console.log(displayScore());
-  alert(displayScore());
-}
+displayQuestion();
+countdown();
