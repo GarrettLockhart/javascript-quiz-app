@@ -19,6 +19,15 @@ const selectedCheckBox = document.querySelector(
   '.choice-input-label-container'
 );
 
+var i = 0;
+var timeLeft = 1000;
+var score = [0];
+console.log(score);
+
+var totalScore = {
+  playerTotalScore: score,
+};
+
 nextQuestionBtn.addEventListener('click', nextQuestion);
 
 // Questions, Options, and correct answer
@@ -67,10 +76,6 @@ const quizData = [
   },
 ];
 
-var i = 0;
-var timeLeft = 1000;
-var score = 0;
-
 // Countdown timer
 function countdown() {
   var timeInterval = setInterval(function () {
@@ -116,7 +121,6 @@ function nextQuestion() {
   ) {
     answerTracker();
     scoreTracker();
-    console.log(scoreTracker());
     i++;
     if (i < quizData.length) {
       checkBoxA.checked = false;
@@ -125,8 +129,11 @@ function nextQuestion() {
       checkBoxD.checked = false;
       displayQuestion();
     } else {
-      alert(`Your score was ${score}`);
-      prompt('Please enter your initials to store your score!');
+      // ! this isn't working right, reference error nextQuestion and playerTotalScore not defined
+      displayScore();
+      storeScore();
+      // window.location.assign('index.html');
+      // window.onload = displayScore();
     }
   } else {
     alert('Please select an option.');
@@ -150,7 +157,23 @@ function answerTracker() {
 
 function scoreTracker() {
   if (userSelectedAnswer[i] === quizData[i].correct) {
-    score = score + 10;
+    score[0] = score[0] + 20;
   }
   return score;
+}
+
+function storeScore() {
+  localStorage.setItem('totalScore', JSON.stringify(totalScore));
+  // localStorage.setItem('playerTotalScore', playerTotalScore);
+}
+
+// ! this only partially works
+
+function displayScore() {
+  var scoreDisplayOutput = localStorage.getItem(
+    JSON.parse('totalScore', playerTotalScore)
+  );
+  alert(scoreDisplayOutput.playerTotalScore);
+  console.log(displayScore());
+  alert(displayScore());
 }
