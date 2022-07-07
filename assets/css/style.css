@@ -158,9 +158,10 @@ select {
 .main-body-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  height: 100%;
+
+  padding-top: 50px;
   background-color: var(--secondary-color);
   border-radius: 70px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 15px;
@@ -172,7 +173,7 @@ select {
   justify-content: flex-start;
   align-items: center;
   height: 50vh;
-  width: 40vw;
+  width: 65vw;
 }
 
 .question-container {
@@ -187,7 +188,6 @@ select {
 
 .question-text {
   font-size: 1.8em;
-  margin-bottom: 20px;
 }
 
 .choices-container {
@@ -196,7 +196,7 @@ select {
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  margin-bottom: 100px;
+  margin: 65px 0 100px;
 }
 
 .input-label {
@@ -205,9 +205,7 @@ select {
 }
 
 .choices-input {
-  display: flex;
-  order: 1;
-  font-size: 30px;
+  margin-right: 10px;
 }
 
 .choice-input-label-container {
@@ -238,4 +236,10 @@ select {
 
 .nxt-btn:hover {
   background-color: #143ac5;
+}
+
+.score-display-container {
+  display: flex;
+
+  height: 200px;
 }
