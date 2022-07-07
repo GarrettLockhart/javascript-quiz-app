@@ -8,6 +8,7 @@ const thirdChoiceLabel = document.querySelector('#third-choice-text');
 const fourthChoiceLabel = document.querySelector('#fourth-choice-text');
 const nextQuestionBtn = document.querySelector('#next-btn');
 const startBtn = document.querySelector('#start-btn');
+const scoreDisplay = document.querySelector('#score-display');
 
 const checkBoxA = document.querySelector('#check-box-a');
 const checkBoxB = document.querySelector('#check-box-b');
@@ -18,14 +19,10 @@ const selectedCheckBox = document.querySelector(
   '.choice-input-label-container'
 );
 
+// i is for iteration through the quizData
 var i = 0;
-var timeLeft = 1000;
-var score = [0];
-console.log(score);
-
-var totalScore = {
-  playerTotalScore: score,
-};
+var timeLeft = 100;
+var score = [];
 
 nextQuestionBtn.addEventListener('click', nextQuestion);
 
@@ -75,6 +72,10 @@ const quizData = [
   },
 ];
 
+function startQuiz() {
+  window.location.assign('quiz.html');
+}
+
 // Countdown timer
 function countdown() {
   var timeInterval = setInterval(function () {
@@ -106,7 +107,7 @@ function displayQuestion() {
 
 var userSelectedAnswer = [];
 
-// Display next question, store answer selected, add to score, or remove time, reset checkbox state
+// Display next question, store answer selected, add to score if the selected answer matches the value of the quizData correct answer, or remove time, reset checkbox state
 function nextQuestion() {
   if (
     // prettier-ignore
@@ -116,21 +117,27 @@ function nextQuestion() {
     scoreTracker();
     i++;
     if (i < quizData.length) {
+      displayQuestion();
       checkBoxA.checked = false;
       checkBoxB.checked = false;
       checkBoxC.checked = false;
       checkBoxD.checked = false;
-      displayQuestion();
     } else {
       // ! this isn't working right, reference error nextQuestion and playerTotalScore not defined
-      window.location.assign('index.html');
-      // window.onload = displayScore();
+      localStorage.setItem('returnedScore', returnedScore);
+      var highScore = localStorage.getItem('score', score);
+      scoreDisplay.textContent = highScore;
     }
   } else {
     alert('Please select an option.');
   }
 }
 
+// function displayScore() {
+
+// }
+
+// A function to track the users selection
 function answerTracker() {
   if (checkBoxA.checked) {
     userSelectedAnswer = userSelectedAnswer.concat(checkBoxA.value);
@@ -146,16 +153,22 @@ function answerTracker() {
   }
 }
 
+// compare the value that was checked with the correct answer, if it matches add 20 points if it does not match run function for deduct time
+let returnedScore = 0;
 function scoreTracker() {
   if (userSelectedAnswer[i] === quizData[i].correct) {
-    score[0] = score[0] + 20;
+    var totalScore = 10 + 10;
+    score.push(totalScore);
+
+    if (i < score.length) {
+      returnedScore += score[i];
+      console.log(returnedScore);
+    }
   }
-  return score;
 }
 
 function storeScore() {
-  localStorage.setItem('totalScore', JSON.stringify(totalScore));
-  // localStorage.setItem('playerTotalScore', playerTotalScore);
+  localStorage.setItem('score', score);
 }
 
 displayQuestion();
