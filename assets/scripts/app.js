@@ -1,5 +1,4 @@
 const countdownTimer = document.querySelector('#inner-time');
-const answer = document.querySelector('#answer');
 const questionCounter = document.querySelector('.question-counter');
 const currentQuestion = document.querySelector('#current-question');
 const firstChoiceLabel = document.querySelector('#first-choice-text');
@@ -22,9 +21,7 @@ const selectedCheckBox = document.querySelector(
 // i is for iteration through the quizData
 var i = 0;
 var timeLeft = 100;
-var score = [];
-
-nextQuestionBtn.addEventListener('click', nextQuestion);
+var score = 0;
 
 // Questions, Options, and correct answer
 const quizData = [
@@ -108,14 +105,14 @@ function displayQuestion() {
 var userSelectedAnswer = [];
 
 // Display next question, store answer selected, add to score if the selected answer matches the value of the quizData correct answer, or remove time, reset checkbox state
-function nextQuestion() {
-  if (
-    // prettier-ignore
-    checkBoxA.checked || checkBoxB.checked || checkBoxC.checked || checkBoxD.checked
-  ) {
+
+nextQuestionBtn.addEventListener('click', function () {
+  // prettier-ignore
+  if (checkBoxA.checked || checkBoxB.checked || checkBoxC.checked || checkBoxD.checked) {
     answerTracker();
     scoreTracker();
     i++;
+    console.log(score);
     if (i < quizData.length) {
       displayQuestion();
       checkBoxA.checked = false;
@@ -123,19 +120,25 @@ function nextQuestion() {
       checkBoxC.checked = false;
       checkBoxD.checked = false;
     } else {
-      // ! this isn't working right, reference error nextQuestion and playerTotalScore not defined
-      localStorage.setItem('returnedScore', returnedScore);
-      var highScore = localStorage.getItem('score', score);
-      scoreDisplay.textContent = highScore;
+      var playerInitials = prompt(
+        'Please enter your initials to store your high score'
+        );
+
+        var playerDetails = {
+          playerName: playerInitials,
+          playerScore: score,
+        };
+
+        localStorage.setItem('playerDetails', JSON.stringify(playerDetails));
+
+        var highScore = JSON.parse(localStorage.getItem(playerDetails));
+      scoreDisplay.textContent = `${highScore.playerName} Score: ${highScore.playerScore}`
+
     }
   } else {
     alert('Please select an option.');
   }
-}
-
-// function displayScore() {
-
-// }
+});
 
 // A function to track the users selection
 function answerTracker() {
@@ -152,24 +155,30 @@ function answerTracker() {
     userSelectedAnswer = userSelectedAnswer.concat(checkBoxD.value);
   }
 }
-
 // compare the value that was checked with the correct answer, if it matches add 20 points if it does not match run function for deduct time
-let returnedScore = 0;
+
 function scoreTracker() {
   if (userSelectedAnswer[i] === quizData[i].correct) {
-    var totalScore = 10 + 10;
-    score.push(totalScore);
-
-    if (i < score.length) {
-      returnedScore += score[i];
-      console.log(returnedScore);
-    }
+    score++;
   }
+  return score;
 }
 
-function storeScore() {
-  localStorage.setItem('score', score);
-}
+// check local storage
+// function storageCheck() {
+//   if (localStorage.getItem('score') === null) {
+//     scoreDisplay.textContent = `No high score's yet`;
+//   } else {
+//     var currentStorage = localStorage.getItem('score');
+//     scoreDisplay.textContent = currentStorage;
+//   }
+//   return currentStorage;
+// }
 
+// if local storage has something
+// function displayScore() {
+
+// }
+// storageCheck();
 displayQuestion();
 countdown();
