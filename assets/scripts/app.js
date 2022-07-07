@@ -163,22 +163,5 @@ function scoreTracker() {
   }
   return score;
 }
-
-// check local storage
-// function storageCheck() {
-//   if (localStorage.getItem('score') === null) {
-//     scoreDisplay.textContent = `No high score's yet`;
-//   } else {
-//     var currentStorage = localStorage.getItem('score');
-//     scoreDisplay.textContent = currentStorage;
-//   }
-//   return currentStorage;
-// }
-
-// if local storage has something
-// function displayScore() {
-
-// }
-// storageCheck();
 displayQuestion();
 countdown();
