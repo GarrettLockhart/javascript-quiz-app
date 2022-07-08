@@ -232,6 +232,7 @@ select {
   background-color: var(--secondary-accent);
   color: var(--secondary-color);
   font-weight: bold;
+  z-index: 99;
 }
 
 .nxt-btn:hover {
