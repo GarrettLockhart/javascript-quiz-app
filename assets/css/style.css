@@ -218,11 +218,14 @@ select {
   background-color: #143ac5;
 }
 
+.btn-container {
+  margin-bottom: 30px;
+}
+
 .nxt-btn {
   border: none;
   border-radius: 40px;
   padding: 10px 30px;
-  margin-bottom: 30px;
   background-color: var(--secondary-accent);
   color: var(--secondary-color);
   font-weight: bold;
