@@ -131,8 +131,12 @@ nextQuestionBtn.addEventListener('click', function () {
 
         localStorage.setItem('playerDetails', JSON.stringify(playerDetails));
 
+        if (localStorage.getItem('playerDetails') === null) {
+          scoreDisplay.textContent = 'No High scores yet'
+        }
+
         var highScore = JSON.parse(localStorage.getItem(playerDetails));
-      scoreDisplay.textContent = `${highScore.playerName} Score: ${highScore.playerScore}`
+      scoreDisplay.textContent = `${playerDetails.playerName} Score: ${playerDetails.playerScore}`
 
     }
   } else {
@@ -159,9 +163,18 @@ function answerTracker() {
 
 function scoreTracker() {
   if (userSelectedAnswer[i] === quizData[i].correct) {
-    score++;
+    score += 20;
+  } else {
+    timeLeft -= 10;
   }
   return score;
 }
+
+function storageDefault() {
+  if (localStorage.getItem('playerDetails') === null) {
+    scoreDisplay.textContent = 'No high scores yet';
+  }
+}
+storageDefault();
 displayQuestion();
 countdown();
