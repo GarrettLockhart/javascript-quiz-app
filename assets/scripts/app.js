@@ -125,7 +125,6 @@ nextQuestionBtn.addEventListener('click', function () {
     answerTracker();
     scoreTracker();
     i++;
-    console.log(score);
     if (i < quizData.length) {
       displayQuestion();
       checkBoxA.checked = false;
