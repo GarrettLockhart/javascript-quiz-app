@@ -1,5 +1,6 @@
 const countdownTimer = document.querySelector('#inner-time');
 const questionCounter = document.querySelector('.question-counter');
+const questionCounterNum = document.querySelector('#question-counter-text');
 const currentQuestion = document.querySelector('#current-question');
 const firstChoiceLabel = document.querySelector('#first-choice-text');
 const secondChoiceLabel = document.querySelector('#second-choice-text');
@@ -92,8 +93,9 @@ function countdown() {
   }, 1000);
 }
 
-// Pulls up the current question
+// Pulls up the current question, their answers, and also advances the question counter number based on index position
 function displayQuestion() {
+  questionCounterNum.textContent = i + 1;
   currentQuestion.textContent = quizData[i].question;
 
   firstChoiceLabel.textContent = quizData[i].a;
@@ -102,10 +104,9 @@ function displayQuestion() {
   fourthChoiceLabel.textContent = quizData[i].d;
 }
 
-var userSelectedAnswer = [];
-
 var highScore = JSON.parse(localStorage.getItem('playerDetails'));
 
+// checks if key "playerDetails" exists in local storage, if not displays what is in local storage"
 function storageDefault() {
   if (localStorage.getItem('playerDetails') === null) {
     scoreDisplay.textContent = 'No Scores Yet!';
@@ -118,7 +119,6 @@ function storageDefault() {
 }
 
 // Display next question, store answer selected, add to score if the selected answer matches the value of the quizData correct answer, or remove time, reset checkbox state
-
 nextQuestionBtn.addEventListener('click', function () {
   // prettier-ignore
   if (checkBoxA.checked || checkBoxB.checked || checkBoxC.checked || checkBoxD.checked) {
@@ -150,7 +150,8 @@ nextQuestionBtn.addEventListener('click', function () {
   }
 });
 
-// A function to track the users selection
+var userSelectedAnswer = [];
+// A function to track the users selection and store it in an array
 function answerTracker() {
   if (checkBoxA.checked) {
     userSelectedAnswer = userSelectedAnswer.concat(checkBoxA.value);
@@ -166,7 +167,7 @@ function answerTracker() {
   }
 }
 
-// compare the value that was checked with the correct answer, if it matches add 20 points if it does not match run function for deduct time
+// compare the value that was checked with the correct answer, if it matches the correct answer add 20 points if it does not match deduct 20 second from timeLeft
 function scoreTracker() {
   if (userSelectedAnswer[i] === quizData[i].correct) {
     score += 20;
