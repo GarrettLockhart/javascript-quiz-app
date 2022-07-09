@@ -104,6 +104,19 @@ function displayQuestion() {
 
 var userSelectedAnswer = [];
 
+var highScore = JSON.parse(localStorage.getItem('playerDetails'));
+
+function storageDefault() {
+  if (localStorage.getItem('playerDetails') === null) {
+    scoreDisplay.textContent = 'No Scores Yet!';
+  } else if (
+    localStorage.getItem('playerDetails') ===
+    localStorage.getItem('playerDetails')
+  ) {
+    scoreDisplay.textContent = `${highScore.playerName} Score: ${highScore.playerScore}`;
+  }
+}
+
 // Display next question, store answer selected, add to score if the selected answer matches the value of the quizData correct answer, or remove time, reset checkbox state
 
 nextQuestionBtn.addEventListener('click', function () {
@@ -131,13 +144,6 @@ nextQuestionBtn.addEventListener('click', function () {
 
         localStorage.setItem('playerDetails', JSON.stringify(playerDetails));
 
-        if (localStorage.getItem('playerDetails') === null) {
-          scoreDisplay.textContent = 'No High scores yet'
-        }
-
-        var highScore = JSON.parse(localStorage.getItem(playerDetails));
-      scoreDisplay.textContent = `${playerDetails.playerName} Score: ${playerDetails.playerScore}`
-
     }
   } else {
     alert('Please select an option.');
@@ -159,22 +165,17 @@ function answerTracker() {
     userSelectedAnswer = userSelectedAnswer.concat(checkBoxD.value);
   }
 }
-// compare the value that was checked with the correct answer, if it matches add 20 points if it does not match run function for deduct time
 
+// compare the value that was checked with the correct answer, if it matches add 20 points if it does not match run function for deduct time
 function scoreTracker() {
   if (userSelectedAnswer[i] === quizData[i].correct) {
     score += 20;
   } else {
-    timeLeft -= 10;
+    timeLeft -= 20;
   }
   return score;
 }
 
-function storageDefault() {
-  if (localStorage.getItem('playerDetails') === null) {
-    scoreDisplay.textContent = 'No high scores yet';
-  }
-}
 storageDefault();
 displayQuestion();
 countdown();
