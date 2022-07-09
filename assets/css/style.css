@@ -176,7 +176,7 @@ select {
 .question-counter {
   font-size: 1.2em;
   text-align: center;
-  color: var(--accent-color);
+  color: #000;
 }
 
 .question-text {
