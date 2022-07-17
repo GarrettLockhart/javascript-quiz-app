@@ -142,7 +142,7 @@ nextQuestionBtn.addEventListener('click', function () {
         };
 
         localStorage.setItem('playerDetails', JSON.stringify(playerDetails));
-
+        window.location.reload();
     }
   } else {
     alert('Please select an option.');
