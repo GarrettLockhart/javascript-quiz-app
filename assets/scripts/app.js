@@ -23,6 +23,8 @@ const selectedCheckBox = document.querySelector(
 var i = 0;
 var timeLeft = 100;
 var score = 0;
+var userSelectedAnswer = [];
+var highScore = JSON.parse(localStorage.getItem('playerDetails'));
 
 // Questions, Options, and correct answer
 const quizData = [
@@ -94,17 +96,19 @@ function countdown() {
 }
 
 // Pulls up the current question, their answers, and also advances the question counter number based on index position
-function displayQuestion() {
-  questionCounterNum.textContent = i + 1;
-  currentQuestion.textContent = quizData[i].question;
+if (document.body.contains(currentQuestion)) {
+  function displayQuestion() {
+    questionCounterNum.textContent = i + 1;
+    currentQuestion.textContent = quizData[i].question;
 
-  firstChoiceLabel.textContent = quizData[i].a;
-  secondChoiceLabel.textContent = quizData[i].b;
-  thirdChoiceLabel.textContent = quizData[i].c;
-  fourthChoiceLabel.textContent = quizData[i].d;
+    firstChoiceLabel.textContent = quizData[i].a;
+    secondChoiceLabel.textContent = quizData[i].b;
+    thirdChoiceLabel.textContent = quizData[i].c;
+    fourthChoiceLabel.textContent = quizData[i].d;
+  }
+  displayQuestion();
+  countdown();
 }
-
-var highScore = JSON.parse(localStorage.getItem('playerDetails'));
 
 // checks if key "playerDetails" exists in local storage, if not displays what is in local storage"
 function storageDefault() {
@@ -119,37 +123,38 @@ function storageDefault() {
 }
 
 // Display next question, store answer selected, add to score if the selected answer matches the value of the quizData correct answer, or remove time, reset checkbox state
-nextQuestionBtn.addEventListener('click', function () {
-  // prettier-ignore
-  if (checkBoxA.checked || checkBoxB.checked || checkBoxC.checked || checkBoxD.checked) {
-    answerTracker();
-    scoreTracker();
-    i++;
-    if (i < quizData.length) {
-      displayQuestion();
-      checkBoxA.checked = false;
-      checkBoxB.checked = false;
-      checkBoxC.checked = false;
-      checkBoxD.checked = false;
+if (document.body.contains(nextQuestionBtn)) {
+  nextQuestionBtn.addEventListener('click', function () {
+    // prettier-ignore
+    if (checkBoxA.checked || checkBoxB.checked || checkBoxC.checked || checkBoxD.checked) {
+      answerTracker();
+      scoreTracker();
+      i++;
+      if (i < quizData.length) {
+        displayQuestion();
+        checkBoxA.checked = false;
+        checkBoxB.checked = false;
+        checkBoxC.checked = false;
+        checkBoxD.checked = false;
+      } else {
+        var playerInitials = prompt(
+          'Please enter your initials to store your high score'
+          );
+  
+          var playerDetails = {
+            playerName: playerInitials,
+            playerScore: score,
+          };
+  
+          localStorage.setItem('playerDetails', JSON.stringify(playerDetails));
+          window.location.reload();
+      }
     } else {
-      var playerInitials = prompt(
-        'Please enter your initials to store your high score'
-        );
-
-        var playerDetails = {
-          playerName: playerInitials,
-          playerScore: score,
-        };
-
-        localStorage.setItem('playerDetails', JSON.stringify(playerDetails));
-        window.location.reload();
+      alert('Please select an option.');
     }
-  } else {
-    alert('Please select an option.');
-  }
-});
+  });
+}
 
-var userSelectedAnswer = [];
 // A function to track the users selection and store it in an array
 function answerTracker() {
   if (checkBoxA.checked) {
@@ -177,5 +182,3 @@ function scoreTracker() {
 }
 
 storageDefault();
-displayQuestion();
-countdown();
