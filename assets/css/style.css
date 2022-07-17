@@ -2,9 +2,9 @@
 
 :root {
   --primary-color: #fdf6e3;
-  --secondary-color: #fff;
-  --accent-color: #ffd256;
-  --secondary-accent: #3661f7;
+  --secondary-color: #e9c46a;
+  --accent-color: #264653;
+  --secondary-accent: #2a9d8f;
 }
 
 /* Box sizing rules */
@@ -46,6 +46,7 @@ body {
   line-height: 1.5;
   font-family: 'Roboto', sans-serif;
   background-color: var(--accent-color);
+  color: #000;
 }
 
 /* A elements that don't have a class get default styles */
@@ -95,18 +96,20 @@ select {
 /* header */
 
 .nav-time {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.4em;
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  font-size: 1.2em;
   text-transform: uppercase;
   margin: 0 100px;
   font-weight: bold;
+  color: #000;
 }
 
 /* Start page */
 
 .start-page-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -138,24 +141,25 @@ select {
   border-radius: 40px;
   padding: 10px 30px;
   background-color: var(--secondary-accent);
-  color: var(--secondary-color);
+  color: var(--primary-color);
   font-weight: bold;
 }
 
 .start-button:hover {
-  background-color: #143ac5;
+  background-color: var(--accent-color);
 }
 
 /* Quiz main body */
 
 .main-body-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   height: 95vh;
   padding-top: 50px;
-  background-color: var(--secondary-color);
+  background-color: #e6e6e6;
   border-radius: 70px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 15px;
 }
@@ -176,11 +180,12 @@ select {
 .question-counter {
   font-size: 1.2em;
   text-align: center;
-  color: #000;
+  color: var(--accent-color);
 }
 
 .question-text {
   font-size: 1.8em;
+  color: var(--accent-color);
 }
 
 .choices-container {
@@ -208,14 +213,14 @@ select {
   width: 100%;
   background-color: var(--secondary-accent);
   border-radius: 40px;
-  color: var(--secondary-color);
+  color: var(--primary-color);
   font-weight: bold;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 .choice-input-label-container:hover {
-  background-color: #143ac5;
+  background-color: var(--accent-color);
 }
 
 .btn-container {
@@ -227,17 +232,24 @@ select {
   border-radius: 40px;
   padding: 10px 30px;
   background-color: var(--secondary-accent);
-  color: var(--secondary-color);
+  color: #fff;
   font-weight: bold;
 }
 
 .nxt-btn:hover {
-  background-color: #143ac5;
+  background-color: var(--accent-color);
 }
 
 .score-display-container {
   display: flex;
   margin-top: 30px;
+  color: var(--accent-color);
+}
+
+.high-scores-link {
+  text-decoration: underline;
+  color: var(--secondary-accent);
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 768px) {
@@ -249,6 +261,8 @@ select {
   }
   .nav-time {
     font-size: 1em;
+    position: relative;
+    margin-bottom: 20px;
   }
   .choices-container {
     margin: 20px 0;
