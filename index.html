@@ -22,10 +22,10 @@
   </head>
   <body>
     <div class="main-container">
-      <header class="nav-time">
-        <span id="countdown-timer">Time: <span id="inner-time"></span></span>
-      </header>
       <main class="main-body-container">
+        <div class="nav-time">
+          <span id="countdown-timer">Time: <span id="inner-time"></span></span>
+        </div>
         <section class="start-page-container">
           <h1 class="start-title">The JavaScript Quiz</h1>
           <p class="start-description">
@@ -36,6 +36,12 @@
           <button onclick="startQuiz()" class="start-button" id="strt-btn">
             Start!
           </button>
+          <section class="score-display-container">
+            <h1>Current High Score: <span id="score-display"></span></h1>
+            <a href="high-scores.html" class="high-scores-link"
+              >View High Score's</a
+            >
+          </section>
         </section>
       </main>
     </div>
